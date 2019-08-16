@@ -1,0 +1,16 @@
+<?php
+$categoryId = $this->getData('category_id');
+$category = $block->getCategory($categoryId);
+$childrenCategories = $category->getChildrenCategories();
+?>
+
+<li class="root-category"><h4><a href="<?php echo $category->getUrl(); ?>"><?php echo $category->getName() ?></a></h4>
+
+	<ul>
+	<?php  foreach ($childrenCategories as $childCategory) { ?>
+		<li>
+        	<a href="<?php echo $childCategory->getUrl(); ?>"><?php echo $childCategory->getName() ?></a> 
+		</li>
+	<?php } ?>	
+	</ul>
+</li>

@@ -1,0 +1,50 @@
+<?php
+/**
+ * Mageinn_Hint extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Mageinn
+ * @package     Mageinn_Hint
+ * @copyright   Copyright (c) 2017 Mageinn. (http://mageinn.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
+ * @var \Magento\Framework\View\TemplateEngine\Php $this
+ * @var \Magento\Catalog\Block\Product\View\Attributes $block
+ * @var Magento\Catalog\Helper\Output $_helper
+ */
+
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+if (! ($_additional = $block->getAdditionalData())) {
+    return;
+}
+?>
+
+<div class="additional-attributes-wrapper table-wrapper">
+    <table class="data table additional-attributes" id="product-attribute-specs-table">
+        <caption class="table-caption"><?= __('More Information') ?></caption>
+        <tbody>
+        <?php foreach ($_additional as $_data) : ?>
+            <tr>
+                <th class="col label" scope="row">
+                    <?= $block->escapeHtml(__($_data['label'])) ?> <?= $_data['hints']['label'] ?>
+                </th>
+                <td class="col data" data-th="<?= $block->escapeHtml(__($_data['label'])) ?>">
+                    <?= $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?> <?= $_data['hints']['value'] ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

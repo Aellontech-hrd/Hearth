@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+	  <referenceContainer name="content">
+	  	<block class="BH\WordPress\Block\Post\Brands" name="wp.page.view" />
+     	<block class="BH\WordPress\Block\General" name="top.divider" after="wp.page.view" template="hr.phtml"></block>
+	    <block class="MGS\Testimonial\Block\Testimonial" name="page.testimonial" after="top.divider" template="brands-grid.phtml">
+	      <arguments>
+	          <argument name="testimonials_count" xsi:type="string">1</argument>
+	          <argument name="perrow" xsi:type="string">1</argument>
+	          <argument name="show_avatar" xsi:type="string">1</argument>
+	          <argument name="use_slider" xsi:type="string">0</argument>
+	      </arguments>
+	    </block>
+	    <block class="BH\WordPress\Block\General" name="bottom.divider" after="page.testimonial" template="hr.phtml"></block>
+	    <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe" as="subscribe" after="bottom.divider" template="MDN_Newsletter::large-subscribe.phtml"/>
+	  </referenceContainer>
+	  <referenceContainer name="sidebar.main" remove="true" />
+	  <referenceContainer name="sidebar.additional" remove="true" />		
+	</body>
+</page>

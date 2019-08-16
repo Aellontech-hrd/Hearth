@@ -1,0 +1,22 @@
+<?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); ?>
+<?php $posts = $objectManager->create('FishPig\WordPress\Model\ResourceModel\Post\Collection')
+	->addPostTypeFilter('post')
+	->setOrderByPostDate()
+	->addIsViewableFilter()
+	->setPageSize(3)
+	->load(); ?>
+<?php if (count($posts) > 0): ?>
+	<ul class="row">
+		<?php foreach($posts as $post): ?>
+			<li class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+				<?php if ($image = $post->getFeaturedImage()): ?>
+					
+					<div class="blog-block" style="background:url('<?php echo $image->getMediumImage() ?>');"></div>
+					<div class="blog-title">
+						<h3 class="title"><a href="<?php echo $post->getPermalink() ?>"><?php echo $this->escapeHtml($post->getPostTitle()) ?></a></h3>
+						<a class="btn btn-white btn-sm" href="<?php echo $post->getPermalink() ?>"><?php echo __('More') ?></a>
+					</div>
+				<?php endif; ?>
+		<?php endforeach; ?>
+	</ul>
+<?php endif; ?>

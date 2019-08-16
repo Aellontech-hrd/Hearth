@@ -1,0 +1,35 @@
+<?php
+$MgsPanelhelper = $this->helper('MGS\Mpanel\Helper\Data');
+$canUsePanel = $MgsPanelhelper->acceptToUsePanel();
+?>
+<div class="top_menu navigation hidden-lg">
+		<ul class="nav nav-main nav-main-menu">
+			<li class="static-menu level0 dropdown">
+				<a href="#" class="level0 dropdown-toggle"><span data-hover="<?php echo __('About Us'); ?>"><?php echo __('About Us'); ?></span></a>
+				<span class="toggle-menu">
+					<a onclick="toggleEl(this,'mobile-topmenu-about')" href="javascript:void(0)" class=""><span class="fa fa-plus"></span></a>
+				</span>
+				<ul class="dropdown-menu" id="mobile-topmenu-about" style="display: none;">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('hg_topmenu_about')->setCanUsePanel($canUsePanel)->toHtml(); ?>
+				</ul>
+			</li>
+			<li class="static-menu level0 dropdown">
+				<a href="#" class="level0 dropdown-toggle"><span data-hover="<?php echo __('Shopping'); ?>"><?php echo __('Shopping'); ?></span></a>
+				<span class="toggle-menu">
+					<a onclick="toggleEl(this,'mobile-topmenu-shopping')" href="javascript:void(0)" class=""><span class="fa fa-plus"></span></a>
+				</span>
+				<ul class="dropdown-menu" id="mobile-topmenu-shopping" style="display: none;">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('hg_topmenu_shopping')->setCanUsePanel($canUsePanel)->toHtml(); ?>
+				</ul>
+			</li>
+			<li class="static-menu level0 dropdown">
+				<a href="#" class="level0 dropdown-toggle"><span data-hover="<?php echo __('Support'); ?>"><?php echo __('Support'); ?></span></a>
+				<span class="toggle-menu">
+					<a onclick="toggleEl(this,'mobile-topmenu-support')" href="javascript:void(0)" class=""><span class="fa fa-plus"></span></a>
+				</span>
+				<ul class="dropdown-menu" id="mobile-topmenu-support" style="display: none;">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('hg_topmenu_support')->setCanUsePanel($canUsePanel)->toHtml(); ?>
+				</ul>
+			</li>
+		</ul>
+</div>

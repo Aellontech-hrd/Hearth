@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<link rel="stylesheet" type="text/css" src="//fonts.googleapis.com/css?family=Bree+Serif" src_type="url" />
+		<link src="js/child-custom.js"/>
+	</head>
+	<body>
+		<attribute name="class" value="mage"/>
+        <referenceContainer name="header.container">
+			<referenceBlock name="header">
+				<arguments>
+					<argument name="show_part" xsi:type="string">welcome</argument>
+				</arguments>
+				<referenceBlock name="top.links">
+
+				    <referenceBlock name="register-link" remove="true" />           
+				    <referenceBlock name="wish-list-link" remove="true" />          
+				    <referenceBlock name="authorization-link-login" remove="true"/>   
+				    <referenceBlock name="storelocator" remove="true"/> 
+
+					<arguments>
+						<argument name="css_class" xsi:type="string">top-links list-inline text-right</argument>
+					</arguments>
+					
+					<block class="BH\Topmenu\Block\Bhlink" name="hg-help">
+						<arguments>
+							<argument name="label" xsi:type="string" translate="true">Help</argument>
+							<argument name="path" xsi:type="string" translate="true">help</argument>
+						</arguments>
+					</block>
+				</referenceBlock>
+				<block class="BH\Topmenu\Block\Menucontent" name="hg_desktop_topmenu" as="hg_desktop_topmenu" template="hg_desktop_topmenu.phtml"/>
+				
+				
+				<block class="Magento\Theme\Block\Html\Header\Logo" name="logo">
+                    <arguments>
+                        <argument name="logo_img_width" xsi:type="number">300</argument>
+                        <argument name="logo_img_height" xsi:type="number">45</argument>
+                    </arguments>
+                </block>
+				
+				<block class="Magento\Framework\View\Element\Template" name="top.search" as="topSearch" template="Magento_Search::form.mini.phtml" />
+				
+				<block class="BH\Topmenu\Block\Menucontent" name="hg_mobile_topmenu" as="hg_mobile_topmenu" template="hg_mobile_topmenu.phtml"/>
+				
+				<block class="MGS\Mmegamenu\Block\Mmegamenu" name="megamenu" template="MGS_Mmegamenu::navigation.phtml"/>
+				
+				<block class="Magento\Theme\Block\Html\Topmenu" name="catalog.topnav" template="html/topmenu.phtml" ttl="3600" before="-"/>
+				
+
+			</referenceBlock>
+        </referenceContainer>
+        
+    <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+    <referenceBlock name="catalog.compare.link" remove="true"/>
+    <referenceBlock name="related.product.addto.compare" remove="true"/>
+    <referenceBlock name="view.addto.compare" remove="true"/>
+    <referenceBlock name="upsell.product.addto.compare" remove="true"/>
+      
+	</body>
+</page>

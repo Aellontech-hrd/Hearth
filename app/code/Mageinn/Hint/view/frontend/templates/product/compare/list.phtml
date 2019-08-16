@@ -1,0 +1,173 @@
+<?php
+/**
+ * Mageinn_Hint extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Mageinn
+ * @package     Mageinn_Hint
+ * @copyright   Copyright (c) 2017 Mageinn. (http://mageinn.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
+ * @var \Magento\Framework\View\TemplateEngine\Php $this
+ * @var \Magento\Catalog\Block\Product\Compare\ListCompare $block
+ * @var \Mageinn\Hint\Helper\Data $helper
+ * @var \Magento\Catalog\Helper\Output $_helper
+ * @var \Magento\Catalog\Helper\Product\Compare $compareHelper
+ * @var \Magento\Wishlist\Helper\Data $wishlistHelper
+ */
+
+$_total = $block->getItems()->getSize();
+$helper = $this->helper('Mageinn\Hint\Helper\Data');
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');
+$wishlistHelper = $this->helper('Magento\Wishlist\Helper\Data');
+?>
+
+<?php if (! $_total) : ?>
+    <div class="message info empty"><div><?= __('You have no items to compare.') ?></div></div>
+    <?php return ?>
+<?php endif ?>
+
+<a href="#" class="action print" title="<?= __('Print This Page') ?>">
+    <span><?= __('Print This Page') ?></span>
+</a>
+
+<div class="table-wrapper comparison">
+    <table class="data table table-comparison"
+           id="product-comparison"
+           data-mage-init='{
+               "compareList":{
+                   "windowPrintSelector":".action.print",
+                   "productsInRow":"5",
+                   "selectors":{
+                       "productAddToCartSelector":"button.action.tocart"
+                   }
+               }
+           }'
+    >
+        <caption class="table-caption"><?= __('Compare Products') ?></caption>
+        <thead>
+            <tr>
+                <?php $_i = 0 ?>
+                <?php /** @var \Magento\Catalog\Model\Product $_item */ ?>
+                <?php foreach ($block->getItems() as $_item) : ?>
+                    <?php if ($_i++ == 0) : ?>
+                        <th scope="row" class="cell label remove"><span><?= __('Remove Product') ?></span></th>
+                    <?php endif; ?>
+                    <td class="cell remove product">
+                        <a href="#" data-post='<?= $compareHelper->getPostDataRemove($_item) ?>'
+                            class="action delete" title="<?= __('Remove Product') ?>"
+                        >
+                            <span><?= __('Remove Product') ?></span>
+                        </a>
+                    </td>
+                <?php endforeach ?>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <?php $_i = 0; ?>
+            <?php /** @var \Magento\Catalog\Model\Product $_item */ ?>
+            <?php foreach ($block->getItems() as $_item) : ?>
+                <?php if ($_i++ == 0) : ?>
+                    <th scope="row" class="cell label product"><span><?= __('Product') ?></span></th>
+                <?php endif ?>
+                <td data-th="<?= $block->escapeHtml(__('Product')); ?>" class="cell product info">
+                    <a class="product-item-photo" href="<?= $block->getProductUrl($_item) ?>" title="<?= $block->stripTags($_item->getName(), null, true) ?>">
+                        <?= $block->getImage($_item, 'product_comparison_list')->toHtml() ?>
+                    </a>
+                    <strong class="product-item-name">
+                        <a href="<?= $block->getProductUrl($_item) ?>" title="<?= $block->stripTags($_item->getName(), null, true) ?>">
+                            <?= $_helper->productAttribute($_item, $_item->getName(), 'name') ?>
+                        </a>
+                    </strong>
+                    <?= $block->getReviewsSummaryHtml($_item, 'short') ?>
+                    <?= $block->getProductPrice($_item, '-compare-list-top') ?>
+                    <div class="product-item-actions">
+                        <div class="actions-primary">
+                            <?php if ($_item->isSaleable()) : ?>
+                                <form data-role="tocart-form" action="<?= $compareHelper->getAddToCartUrl($_item) ?>" method="post">
+                                    <?= $block->getBlockHtml('formkey') ?>
+                                    <button type="submit" class="action tocart primary">
+                                        <span><?= __('Add to Cart') ?></span>
+                                    </button>
+                                </form>
+                            <?php else : ?>
+                                <?php if ($_item->getIsSalable()) : ?>
+                                    <div class="stock available"><span><?= __('In stock') ?></span></div>
+                                <?php else : ?>
+                                    <div class="stock unavailable"><span><?= __('Out of stock') ?></span></div>
+                                <?php endif; ?>
+                            <?php endif ?>
+                        </div>
+                        <?php if ($wishlistHelper->isAllow()) : ?>
+                            <div class="secondary-addto-links actions-secondary" data-role="add-to-links">
+                                <a href="#" data-post='<?= $block->getAddToWishlistParams($_item) ?>' class="action towishlist" data-action="add-to-wishlist">
+                                    <span><?= __('Add to Wish List') ?></span>
+                                </a>
+                            </div>
+                        <?php endif ?>
+                    </div>
+                </td>
+            <?php endforeach ?>
+        </tr>
+        </tbody>
+        <tbody>
+        <?php /** @var \Magento\Catalog\Model\ResourceModel\Eav\Attribute $_attribute */ ?>
+            <?php foreach ($block->getAttributes() as $_attribute) : ?>
+            <tr>
+                <?php $_i = 0 ?>
+                <?php foreach ($block->getItems() as $_item) : ?>
+                    <?php if ($_i++ == 0) : ?>
+                        <th scope="row" class="cell label">
+                            <span class="attribute label">
+                                <?= $block->escapeHtml($_attribute->getStoreLabel() ? $_attribute->getStoreLabel() : __($_attribute->getFrontendLabel())) ?>
+                                <?= $helper->getTitleHintHtml($_attribute->getAttributeId()) ?>
+                            </span>
+                        </th>
+                    <?php endif ?>
+                    <td class="cell product attribute">
+                        <div class="attribute value">
+                            <?php
+                            switch ($_attribute->getAttributeCode()) {
+                                case 'price':
+                                    $out = $block->getProductPrice($_item, '-compare-list-' . $_attribute->getAttributeCode());
+                                    break;
+                                case 'small_image':
+                                    $out = $block->getImage($_item, 'product_small_image')->toHtml();
+                                    break;
+                                default:
+                                    $out = $_helper->productAttribute($_item, $block->getProductAttributeValue($_item, $_attribute), $_attribute->getAttributeCode());
+                            }
+                            ?>
+                            <?= $out ?>
+                            <?= $helper->getOptionHintHtml($_item->getData($_attribute->getAttributeCode()), $_attribute->getAttributeId()) ?>
+                        </div>
+                    </td>
+                <?php endforeach ?>
+            </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+</div>
+
+<?php if (!$block->isRedirectToCartEnabled()) : ?>
+    <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form]": {
+                "catalogAddToCart": {}
+            }
+        }
+    </script>
+<?php endif ?>

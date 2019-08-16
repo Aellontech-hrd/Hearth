@@ -1,0 +1,42 @@
+Hints,Hints
+"Manage Title Hint","Manage Title Hint"
+"Manage Option Hint For %1","Manage Option Hint For %1"
+"Attribute ID was not specified","Attribute ID was not specified"
+"The attribute with a ""%1"" attributeId doesn't exist","The attribute with a ""%1"" attributeId doesn't exist"
+"-- Please Select --","-- Please Select --"
+None,None
+"Deprecated. Use public methods instead","Deprecated. Use public methods instead"
+"Customizable Options Hints","Customizable Options Hints"
+"Please add custom options first and save the product in order to edit hints.","Please add custom options first and save the product in order to edit hints."
+item,item
+items,items
+"Shop By","Shop By"
+"Clear All","Clear All"
+"Shopping Options","Shopping Options"
+"You have no items to compare.","You have no items to compare."
+"Print This Page","Print This Page"
+"Compare Products","Compare Products"
+"Remove Product","Remove Product"
+Product,Product
+"Add to Cart","Add to Cart"
+"In stock","In stock"
+"Out of stock","Out of stock"
+"Add to Wish List","Add to Wish List"
+"More Information","More Information"
+label,label
+Change,Change
+Delete,Delete
+"Compatible file extensions to upload","Compatible file extensions to upload"
+"Maximum image width","Maximum image width"
+px.,px.
+"Maximum image height","Maximum image height"
+"Maximum number of characters:","Maximum number of characters:"
+"Choose an Option...","Choose an Option..."
+Mageinn,Mageinn
+"General Configuration","General Configuration"
+"Module Enable","Module Enable"
+"Layer View Template","Layer View Template"
+"Layer Filter Template","Layer Filter Template"
+"Product Attributes Template","Product Attributes Template"
+"Compare Template","Compare Template"
+"Use Default Template","Use Default Template"

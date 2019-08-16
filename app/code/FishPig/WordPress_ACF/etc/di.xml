@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+  <type name="FishPig\WordPress\Model\App">
+    <plugin name="fishpig_wordpress_acf_app" type="FishPig\WordPress_ACF\Model\Plugin\App" sortOrder="10" disabled="false"/>
+  </type>	
+  <type name="FishPig\WordPress\Model\Post">
+    <plugin name="fishpig_wordpress_acf_post" type="FishPig\WordPress_ACF\Model\Plugin\Post" sortOrder="10" disabled="false"/>
+  </type>
+  <type name="FishPig\WordPress\Model\Term">
+    <plugin name="fishpig_wordpress_acf_term" type="FishPig\WordPress_ACF\Model\Plugin\Term" sortOrder="10" disabled="false"/>
+  </type>
+</config>

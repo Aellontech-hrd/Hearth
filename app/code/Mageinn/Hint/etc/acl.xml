@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageinn
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageinn.com license that is
+ * available through the world-wide-web at this URL:
+ * https://mageinn.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageinn
+ * @package     Mageinn_Hint
+ * @copyright   Copyright (c) 2017 Mageinn (http://mageinn.com/)
+ * @license     https://mageinn.com/LICENSE.txt
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Mageinn_Hint::config" title="Mageinn Hint/Tooltips Configuration" sortOrder="220" />
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Mageinn_Core::mageinnmenu">
+                    <resource id="Mageinn_Core::configuration">
+                        <resource id="Mageinn_Hint::hint" title="Hint/Tooltips Configuration" sortOrder="150" />
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

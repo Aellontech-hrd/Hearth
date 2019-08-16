@@ -1,0 +1,98 @@
+<?php $block = $this->getBlock() ?>
+<?php $welcomeMessage = $block->getWelcome(); ?>
+<?php $MgsPanelhelper = $this->helper('MGS\Mpanel\Helper\Data') ?>
+<?php $canUsePanel = $MgsPanelhelper->acceptToUsePanel() ?>
+
+<style>
+   .products-related  li.item.product.product-item {width: 100% !important;}
+   .label-big-check{border: none !important;}
+   .add-on-related{    background: #e6e6e6; min-height: 200px; padding: 22px;}
+   
+   .tpd-skin-dark .tpd-close {color: #000 !important;}
+   .tpd-content{    color: #000 !important; background: #fff !important; border: 1px solid #c2c2c2;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);     max-height: 56px;}
+   .tpd-content-wrapper{    overflow: initial !important;}
+  .tpd-tooltip.tpd-skin-dark.tpd-size-medium{    top: 645px !important;}
+  
+  .tpd-stem-triangle{   background-color: #fff !important; border-top: 15px solid #c2c2c2 !important;}
+</style>
+
+<div class="top-header-content">
+	<div class="container">
+		<div class="row">
+			<div class="top-message col-lg-4 col-sm-6 pull-left">
+				<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('hg_top_message')->setCanUsePanel($canUsePanel)->toHtml(); ?>
+			</div>
+			<div class="col-lg-8 col-sm-6 col-xs-6 pull-right">
+				<?php echo $block->getChildHtml('minicart') ?>
+				<?php echo $block->getChildHtml('top.links') ?>
+				<?php echo $block->getChildHtml('hg_desktop_topmenu') ?>
+				
+				<?php /* Remove welcome message
+				<div class="greet welcome" data-bind="scope: 'customer'">
+					<span data-bind="text: customer().fullname ? $t('Welcome, %1!').replace('%1', customer().fullname) : '<?php echo $block->escapeHtml($welcomeMessage) ?>'"><?php echo $block->escapeHtml($welcomeMessage) ?></span>
+				</div>
+				*/ ?>
+				
+			</div>
+			<div class="col-lg-4 col-sm-6 col-xs-6">
+				<?php echo $block->getChildHtml('store_language') ?>
+				<?php echo $block->getChildHtml('currency') ?>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="middle-header-content">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-sm-9 col-xs-9">
+				<?php echo $block->getChildHtml('logo') ?>
+			</div>
+			<div class="col-sm-3 col-xs-3 hidden-lg">
+				<button class="action btn btn-primary btn-sm nav-toggle"><span class="fa fa-bars" aria-hidden="true"></span></button>
+			</div>
+			<div class="col-lg-4 visible-lg-block ">
+				<?php echo $block->getChildHtml('top.search') ?>
+			</div>
+			<div class="col-xs-12 hidden-lg">
+				<?php echo $block->getChildHtml('top.search') ?>
+			</div>			
+			<div class="col-lg-4 col-sm-12 col-xs-12">
+				<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('hg_header_info')->setCanUsePanel($canUsePanel)->toHtml() ?>
+			</div>
+		</div>
+	</div>
+</div>
+<button class="action close-nav-button"><span class="fa fa-times" aria-hidden="true"></span></button>
+
+<?php /*
+<div class="hg-megamenu">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<?php echo $block->getChildHtml('megamenu') ?>
+			</div>
+		</div>
+	</div>
+</div>
+*/ ?>
+
+<div class="hg-megamenu megamenu-content<?php if($block->getChildHtml('megamenu')!=''): ?> mgs-menu<?php else: ?> mgt-menu<?php endif ?>">
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#main-Menucontent"><?php echo __('Menu'); ?></a></li>
+		<li><a data-toggle="tab" href="#main-Accountcontent"><?php echo __('My Account'); ?></a></li>
+	</ul>
+	<div class="tab-content">
+		<div id="main-Menucontent" class="tab-pane fade in active">
+			<?php echo $block->getChildHtml('hg_mobile_topmenu') ?>
+			<?php if($block->getChildHtml('megamenu')!=''): ?>
+				<?php echo $block->getChildHtml('megamenu') ?>
+			<?php else: ?>
+				<?php echo $block->getChildHtml('catalog.topnav') ?>
+			<?php endif ?>
+		</div>
+		<div id="main-Accountcontent" class="tab-pane fade">
+			<?php echo $block->getChildHtml('top.links') ?>
+		</div>
+	</div>
+</div>

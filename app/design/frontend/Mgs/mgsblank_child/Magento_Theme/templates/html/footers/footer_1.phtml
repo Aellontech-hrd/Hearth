@@ -1,0 +1,35 @@
+<?php $helper = $this->helper('MGS\Mpanel\Helper\Data') ?>
+<?php $canUsePanel = $helper->acceptToUsePanel() ?>
+<?php $block = $this->getBlock() ?>
+<div class="footer-container">
+	<div class="middle-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_col1_block')->setCanUsePanel($canUsePanel)->toHtml() ?>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_col2_block')->setCanUsePanel($canUsePanel)->toHtml() ?>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_col3_block')->setCanUsePanel($canUsePanel)->toHtml() ?>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_col4_block')->setCanUsePanel($canUsePanel)->toHtml() ?>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php /* 
+	<div class="bottom-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<address><?php echo $block->getCopyright() </address>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php */ ?>
+
+</div>

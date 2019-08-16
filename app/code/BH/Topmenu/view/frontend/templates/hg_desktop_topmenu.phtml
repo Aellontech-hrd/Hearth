@@ -1,0 +1,28 @@
+<?php
+$MgsPanelhelper = $this->helper('MGS\Mpanel\Helper\Data');
+$canUsePanel = $MgsPanelhelper->acceptToUsePanel();
+?>
+<div class="navigation visible-lg">
+	<div class="row">
+		<ul class="nav nav-main nav-main-menu top-menu pull-right">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo __('About Us'); ?><span class="caret"></span></a>
+				<ul class="dropdown-menu" id="desktop-topmenu-about">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('hg_topmenu_about')->setCanUsePanel($canUsePanel)->toHtml(); ?>
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo __('Shopping'); ?><span class="caret"></span></a>
+				<ul class="dropdown-menu" id="desktop-topmenu-shopping">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('hg_topmenu_shopping')->setCanUsePanel($canUsePanel)->toHtml(); ?>				
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo __('Support'); ?><span class="caret"></span></a>
+				<ul class="dropdown-menu" id="desktop-topmenu-support">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('hg_topmenu_support')->setCanUsePanel($canUsePanel)->toHtml(); ?>				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>

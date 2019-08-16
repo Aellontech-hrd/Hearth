@@ -1,0 +1,108 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     FishPig_WordPress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <ben@fishpig.co.uk>
+ */
+?>
+<?php 
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+
+$post = $this->getPost(); 
+$banner_src = $post->getMetaValue('brand_banner_image');
+$shop_now_url = $post->getMetaValue('brand_shop_now');
+$brand_about_image = $post->getMetaValue('brand_about_image');
+$brand_about_name = $post->getMetaValue('brand_about_name');
+$brand_about_copy = $post->getMetaValue('brand_about_copy');
+
+$brand_video_embed = $post->getMetaValue('brand_video_embed');
+$brand_video_about = $post->getMetaValue('brand_video_about');
+
+$brand_feature_image = $post->getMetaValue('brand_feature_image');
+$brand_feature_name = $post->getMetaValue('brand_feature_name');
+$brand_feature_copy = $post->getMetaValue('brand_feature_copy');
+
+$brand_shop_title = $post->getMetaValue('brand_shop_title');
+$brand_shop_image = $post->getMetaValue('brand_shop_image');
+$brand_shop_copy = $post->getMetaValue('brand_shop_copy');
+$brand_shop_store_button = $post->getMetaValue('brand_shop_store_button');
+
+$brand_parts_title = $post->getMetaValue('brand_parts_title');
+$brand_parts_image = $post->getMetaValue('brand_parts_image');
+$brand_parts_copy = $post->getMetaValue('brand_parts_copy');
+$brand_parts_button = $post->getMetaValue('brand_parts_button');
+
+$brand_support_image = $post->getMetaValue('brand_support_image');
+
+?>
+	
+<div class="brand-container no-padding container-fluid">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 ">
+			<img class="img-responsive" alt="Responsive image" src="<?php echo $banner_src; ?>">
+			<?php if( !empty($shop_now_url) ): ?>
+				<a class="shop-now-btn btn btn-white btn-jbo" href="<?php echo $baseUrl . $shop_now_url ?>"><?php echo __('Shop Now') ?></a>
+			<?php endif; ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 brand-item">
+			<img class="img-responsive" alt="Responsive image" src="<?php echo $brand_about_image ?>">
+			<h4 class="red"><?php echo __('About ') . $brand_about_name ?></h4>
+			<p><?php echo $brand_about_copy ?></p>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 brand-item video-about">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="//www.youtube.com/embed/<?php echo $brand_video_embed ?>" allowfullscreen></iframe>
+			</div>
+			<p><?php echo $brand_video_about ?></p>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 brand-item">
+			<img class="img-responsive" alt="Responsive image" src="<?php echo $brand_feature_image ?>">
+			<h4 class="red"><?php echo $brand_feature_name ?></h4>
+			<p><?php echo $brand_feature_copy ?></p>
+		</div>
+	</div>
+	<div class="visible-md visible-lg"><hr /></div>
+	<div class="row">
+		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 brand-item shop">
+			<h4 class="black"><?php echo $brand_shop_title ?></h4>
+			<img class="img-responsive" alt="Responsive image" src="<?php echo $brand_shop_image ?>">
+			<p><?php echo $brand_shop_copy ?></p>
+			<?php if( !empty($brand_shop_store_button) ): ?>
+				<p class="text-center">
+					<a class="shop-store-btn btn btn-default btn-sm" href="<?php echo $baseUrl . $brand_shop_store_button ?>"><?php echo __('Visit the Store') ?></a>
+				</p>
+			<?php endif; ?>		
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 brand-item parts">
+			<h4 class="black"><?php echo $brand_parts_title ?></h4>
+			<img class="img-responsive" alt="Responsive image" src="<?php echo $brand_parts_image ?>">
+			<p><?php echo $brand_parts_copy ?></p>
+			<?php if( !empty($brand_parts_button) ): ?>
+				<p class="text-center">
+					<a class="shop-store-btn btn btn-default btn-sm" href="<?php echo $baseUrl . $brand_parts_button ?>"><?php echo __('Find Parts') ?></a>
+				</p>
+			<?php endif; ?>		
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 brand-item parts">
+			<h4 class="black"><?php echo __('Support') ?></h4>
+			<img class="img-responsive" alt="Responsive image" src="<?php echo $brand_support_image ?>">
+			<ul>
+			<?php $brand_support_links = array();
+				  $links = array();
+				  $links = $post->getMetaValue('brand_support_links'); 
+				  if(is_array($links) || is_object($links)) :
+					  foreach($links as $link) : ?>
+						  <li><a href="<?php echo $link['url']; ?>"><?php echo $link['name']; ?></a></li>
+					  <?php endforeach; 
+				  endif; ?>
+				  
+			</ul>
+		</div>
+	</div>
+</div>

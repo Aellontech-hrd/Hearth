@@ -1,0 +1,82 @@
+<?php
+/**
+ * Mageinn_Hint extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Mageinn
+ * @package     Mageinn_Hint
+ * @copyright   Copyright (c) 2017 Mageinn. (http://mageinn.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
+ * @var \Magento\Framework\View\TemplateEngine\Php $this
+ * @var \Mageinn\Hint\Block\Product\View\Options\Type\Select\Select $block
+ * @var \Mageinn\Hint\Helper\Data $helper
+ */
+
+use Magento\Catalog\Api\Data\ProductCustomOptionInterface;
+
+$_option = $block->getOption();
+$class = $_option->getIsRequire() ? ' required' : '';
+$helper = $this->helper('Mageinn\Hint\Helper\Data');
+$typeTextArea = $_option->getType() == ProductCustomOptionInterface::OPTION_TYPE_AREA;
+$typeField = $_option->getType() == ProductCustomOptionInterface::OPTION_TYPE_FIELD;
+$_textValidate = [];
+if ($_option->getIsRequire()) {
+    $_textValidate['required'] = true;
+}
+if ($_option->getMaxCharacters()) {
+    $_textValidate['maxlength'] = $_option->getMaxCharacters();
+}
+$dataValidate = empty($_textValidate) ? '{}' : $block->escapeHtml(json_encode($_textValidate));
+$optionDefaultValue = $block->escapeHtml($block->getDefaultValue());
+?>
+
+<div class="field<?= $typeTextArea ? ' textarea' : '' ?><?= $class ?>">
+    <label class="label" for="options_<?= $_option->getId() ?>_text">
+        <span><?= $block->escapeHtml($_option->getTitle()) ?></span>
+        <?= $block->getFormatedPrice() ?>
+    </label>
+    <span>
+        <?= $helper->getCustomOptionHtml($_option->getHint()); ?>
+    </span>
+
+    <div class="control">
+        <?php if ($typeField) : ?>
+            <input type="text"
+                   id="options_<?= $_option->getId() ?>_text"
+                   class="input-text product-custom-option"
+                   data-validate="<?= $dataValidate ?>"
+                   name="options[<?= $_option->getId() ?>]"
+                   data-selector="options[<?= $_option->getId() ?>]"
+                   value="<?= $optionDefaultValue ?>"
+            />
+        <?php elseif ($typeTextArea) : ?>
+            <textarea id="options_<?= $_option->getId() ?>_text"
+                      class="product-custom-option"
+                      data-validate="<?= $dataValidate ?>"
+                      name="options[<?= $_option->getId() ?>]"
+                      data-selector="options[<?= $_option->getId() ?>]"
+                      rows="5"
+                      cols="25"
+            >
+                <?= $optionDefaultValue ?>
+            </textarea>
+        <?php endif; ?>
+        <?php if ($_option->getMaxCharacters()) : ?>
+            <p class="note">
+                <?= __('Maximum number of characters:') ?> <strong><?= $_option->getMaxCharacters() ?></strong>
+            </p>
+        <?php endif; ?>
+    </div>
+</div>

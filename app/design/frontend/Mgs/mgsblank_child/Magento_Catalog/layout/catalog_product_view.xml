@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+		<referenceContainer name="content">
+			<container name="product.info.main.before" htmlTag="div" htmlClass="row" before="-">
+				<container name="product.info.main.media" htmlTag="div" htmlClass="col-md-6 col-sm-6 col-xs-12" before="-" />
+				<container name="product.info.main.infomation" htmlTag="div" htmlClass="col-md-6 col-sm-6 col-xs-12" after="product.info.main.media" />
+			</container>
+			
+			
+			 <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.add_on_description" template="product/view/attri.phtml" group="detailed_info">
+    <arguments>
+        <argument name="at_call" xsi:type="string">getAddOnDescription</argument>
+        <argument name="at_code" xsi:type="string">add_on_description</argument>
+        <argument name="css_class" xsi:type="string">add_on_description</argument>
+        <argument name="at_label" xsi:type="string">none</argument>
+        <argument name="title" translate="true" xsi:type="string">Add On Description</argument>
+    </arguments>
+    </block>
+		
+			<block class="Magento\Cms\Block\Block" name="custom.product.detail.bottom.static.block" after="-">
+				<arguments>
+					<argument name="block_id" xsi:type="string">mpanel_product_detail_bottom_block</argument>
+					<argument name="enabled_builder" xsi:type="string">1</argument>
+				</arguments>
+			</block>
+		</referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <container name="product.sidebar.main.before.all" htmlTag="div" before="-"/>
+        </referenceContainer>
+		
+		<block class="Magento\Cms\Block\Block" name="custom.product.detail.top.static.block">
+			<arguments>
+				<argument name="block_id" xsi:type="string">mpanel_product_detail_top_block</argument>
+				<argument name="enabled_builder" xsi:type="string">1</argument>
+			</arguments>
+		</block>
+		
+		<!-- Move Element -->
+		<move element="custom.product.detail.top.static.block" destination="product.info.main.infomation" after="-" />
+		
+		<move element="product.detail.sharethis" destination="product.info.main" after="-" />
+		
+		<move element="product.info.extrahint" destination="product.info.main" after="product.info" />
+		
+		<move element="product.info.overview" destination="product.info.main" after="product.info.price" />
+		
+		<move element="page.main.title" destination="product.info.main.infomation" before="-" />
+		
+		<move element="product.info.media" destination="product.info.main.media"/>
+		
+		<move element="product.info.main" destination="product.info.main.infomation"/>
+		
+        <move element="product.info.stock.sku" destination="product.info.price" after="product.price.final"/>
+        
+        <move element="catalog.product.related" destination="product.info.form.options" before="product.info.options.wrapper.bottom"/>
+		
+        <!-- <move element="product.info.review" destination="product.info.main" before="product.info.price"/> -->
+        <referenceBlock name="product.info.review" remove="true" />
+        <referenceBlock name="reviews.tab" remove="true"/>
+	</body>
+</page>

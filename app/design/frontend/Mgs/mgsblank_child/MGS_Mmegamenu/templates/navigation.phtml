@@ -1,0 +1,32 @@
+<?php 
+$megaMenu = $this->getMegamenuItems(); 
+$helper = $this->helper('MGS\Mmegamenu\Helper\Data');
+$MgsPanelhelper = $this->helper('MGS\Mpanel\Helper\Data');
+$canUsePanel = $MgsPanelhelper->acceptToUsePanel();?>
+
+<?php if((count($megaMenu)>0) || $helper->getStoreConfig('megamenu/general/home')):?>
+	<nav class="navigation" role="navigation">
+		<div class="container">
+
+			<ul id="mainMenu" class="nav nav-main nav-main-menu">
+				<div class="hg-button-group">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('hg_header_buttons')->setCanUsePanel($canUsePanel)->toHtml(); ?>
+				</div>			
+				<?php if($helper->getStoreConfig('megamenu/general/home')): ?>
+					<li class="mega-menu-item<?php if($this->isHomePage()): ?> active<?php endif ?>">
+						<a href="<?php echo $this->getUrl() ?>" class="level0">
+							<?php echo $helper->getStoreConfig('megamenu/general/hometext') ?>
+						</a>
+					</li>
+				<?php endif ?>
+				<?php if(count($megaMenu)>0): ?>
+					<?php $i=0; foreach($megaMenu as $item): $i++ ?>
+						<li class="<?php echo $this->getClass($item) ?>">
+							<?php echo $this->getMenuHtml($item) ?>
+						</li>
+					<?php endforeach ?>
+				<?php endif ?>
+			</ul>
+		</div>
+	</nav>
+<?php endif ?>

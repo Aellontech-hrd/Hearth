@@ -1,0 +1,39 @@
+/**
+ * Mageinn_Hint extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Mageinn
+ * @package     Mageinn_Hint
+ * @copyright   Copyright (c) 2017 Mageinn. (http://mageinn.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
+ * @category   Mageinn
+ * @package    Mageinn_Hint
+ * @author     Mageinn
+ */
+.mageinn-hint-content {
+    display: none;
+}
+
+.mageinn-hint-toggle {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAP1BMVEX/ZgD/////cBH/rXf/2cD/zKr/gzD/s4D/4Mz/hTP/693/9e7/j0T/jED/eSD/7OD/vJD/qXD/oGD/llD/xqBrWrlyAAAA/UlEQVQ4jZWU2RaDIAxEIxFcAK3L/39rCdomgPTQecJwncxhg05Io4Moh1rW4TuyqEBIoS2hFLmwDJqnHCFNs4TGwuY2GxmqMR+KoLnKBGq+IZln2YZhNzLXBSFXTH8l7T3XkCDLzQwvzc4NbYDYSK3RJWa1i7CCjo22MLmGyYOoF//bgebuFOigAXn1XNcgYpOB+tACQnD8MQTdUWU7iXCGmNw/zLDMmuZ+0hLXavjJwEmLZH4zqoEBH6CzqLoSygM5uZg1odwWkvHe55G03GBStiMklRyVCoTpoXuE4qFLrUoIy4tQaPrnSjVdzrZr3vZgtD09jY8YqfYcvgHCLAXzc3TzwgAAAABJRU5ErkJggg==) no-repeat scroll 3px 0 transparent;
+    background-size: 18px 18px;
+    cursor: pointer;
+    display: inline-block !important;
+    height: 18px;
+    margin-bottom: -3px;
+    margin-left: 3px;
+    margin-top: 0;
+    width: 24px;
+}

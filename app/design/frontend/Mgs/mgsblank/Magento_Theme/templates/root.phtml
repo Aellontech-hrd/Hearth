@@ -1,0 +1,72 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+$helper =  \Magento\Framework\App\ObjectManager::getInstance()->get('MGS\Mpanel\Helper\Data');
+$url = $helper->getCssUrl();
+$canUsePanel = $helper->acceptToUsePanel();
+?>
+<!doctype html>
+<html class="use-<?php echo $helper->getHeaderClass() ?>" <?php /* @escapeNotVerified */ echo $htmlAttributes ?>>
+    <head <?php /* @escapeNotVerified */ echo $headAttributes ?>>
+		<script>
+			var RTL = false;
+			var WEB_URL = "<?php echo $helper->getUrlBuilder()->getUrl() ?>";
+		</script>
+        <?php /* @escapeNotVerified */ echo $requireJs ?>
+        <?php /* @escapeNotVerified */ echo $headContent ?>
+        <?php /* @escapeNotVerified */ echo $headAdditional ?>
+		<?php //echo $helper->getLinksFont() ?>
+		<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $helper->getMediaUrl() ?>mgs/css/<?php echo $helper->getStore()->getId() ?>/custom_config.css" /> 
+		<?php if($helper->showButton()): ?>
+		<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $helper->getPanelCssUrl() ?>" /> 
+		<?php endif ?>
+		
+    </head>
+    <body data-container="body" data-mage-init='{"loaderAjax": {}, "loader": { "icon": "<?php /* @escapeNotVerified */ echo $loaderIcon; ?>"}}' <?php /* @escapeNotVerified */ echo $bodyAttributes ?>>
+
+        
+		<?php if($helper->showButton() && !$helper->isPopup()): ?>
+			<?php echo $this->getLayout()->createBlock('MGS\Mpanel\Block\Panel\Toppanel')->setTemplate('panel/toppanel.phtml')->setCacheable(false)->toHtml() ?>
+		<?php endif ?>
+		
+		<?php if($helper->acceptToUsePanel() && ($helper->isHomepage() || $helper->isCmsPage())): ?>
+            <div class="page messages container" style="display: none;">
+                <?php echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Template")->setTemplate("Magento_Theme::html/messages.phtml")->toHtml(); ?>
+                <?php echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Messages")->setTemplate("Magento_Theme::messages.phtml")->toHtml(); ?>
+            </div>
+        
+		
+			<?php echo $helper->convertContent($layoutContent, $this->getLayout()->createBlock('MGS\Mpanel\Block\Panel\HomeContent')->setTemplate('panel/homecontent.phtml')->toHtml()) ?>
+		<?php else: ?>
+			<?php echo $layoutContent ?>
+		<?php endif ?>
+		
+		<?php if($canUsePanel): ?>
+			<script  type="text/javascript" src="<?php echo $this->getViewFileUrl('MGS_Mpanel::js/panel.js') ?>"></script>
+		<?php endif ?>
+		
+		<?php if($helper->acceptToUsePanel() && ($helper->isHomepage() || $helper->isCmsPage())): ?>
+            <script  type="text/javascript">
+                require([
+                    'jquery'
+                ], function(jQuery){
+                    (function($) {
+                        jQuery(document).ready(function(){
+                            jQuery(".page.messages").appendTo(".header-placeholder");
+                            jQuery(".page.messages").show();
+                        });
+                        jQuery(window).scroll(function(){
+                            if($(this).scrollTop() > 200){
+                                jQuery(".page.messages").hide();
+                            }
+                        })
+                    })(jQuery);
+                });
+            </script>
+        <?php endif ?>
+    </body>
+</html>

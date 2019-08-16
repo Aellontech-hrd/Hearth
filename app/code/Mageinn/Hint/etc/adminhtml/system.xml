@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageinn_Hint extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Mageinn
+ * @package     Mageinn_AdminExtra
+ * @copyright   Copyright (c) 2017 Mageinn. (http://mageinn.com/)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
+ * @category   Mageinn
+ * @package    Mageinn_Hint
+ * @author     Mageinn
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="mageinn" translate="label" sortOrder="10">
+			<label>Mageinn</label>
+		</tab>
+		<section id="mageinn_hint_configuration" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+			<class>separator-top</class>
+			<label>Hints</label>
+			<tab>mageinn</tab>
+			<resource>Mageinn_Hint::configuration</resource>
+			<group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>General Configuration</label>
+				<field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Module Enable</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="view_template" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Layer View Template</label>
+				</field>
+				<field id="filter_template" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Layer Filter Template</label>
+				</field>
+				<field id="product_attributes_template" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Product Attributes Template</label>
+				</field>
+				<field id="compare_template" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Compare Template</label>
+				</field>
+				<field id="use_default_template" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Use Default Template</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageinn_Hint extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Mageinn
+ * @package     Mageinn_AdminExtra
+ * @copyright   Copyright (c) 2017 Mageinn. (http://mageinn.com/)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
+ * @category   Mageinn
+ * @package    Mageinn_Hint
+ * @author     Mageinn
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Magento\Catalog\Model\Product\Option" type="Mageinn\Hint\Model\Product\Option" />
+	<preference for="Magento\Catalog\Model\Product\Option\Value" type="Mageinn\Hint\Model\Product\Option\Value" />
+
+	<preference for="Magento\Catalog\Model\ResourceModel\Product\Option\Value" type="Mageinn\Hint\Model\ResourceModel\Product\Option\Value" />
+	<preference for="Magento\Catalog\Model\ResourceModel\Product\Option\Value\Collection" type="Mageinn\Hint\Model\ResourceModel\Product\Option\Value\Collection" />
+
+	<preference for="Magento\Catalog\Model\ResourceModel\Product\Option" type="Mageinn\Hint\Model\ResourceModel\Product\Option" />
+	<preference for="Magento\Catalog\Model\ResourceModel\Product\Option\Collection" type="Mageinn\Hint\Model\ResourceModel\Product\Option\Collection" />
+	<!-- Hint Var Injection Into Models And Blocks -->
+	<type name="Magento\Catalog\Block\Product\View\Attributes">
+	    <plugin name="mageinn_hints_in_product_tab" type="Mageinn\Hint\Block\Product\View\Attributes" sortOrder="10" />
+		<plugin name="mageinn_hint_product_attributes_template" type="Mageinn\Hint\Block\Templates\Product\Attributes" sortOrder="9995" />
+	</type>
+	<!-- Template overrides -->
+	<!-- Magento\Framework\View\Element\Template -->
+	<type name="Magento\LayeredNavigation\Block\Navigation">
+	    <plugin name="mageinn_hint_view_template" type="Mageinn\Hint\Block\Templates\Layer\View" sortOrder="9999" />
+	</type>
+	<type name="Magento\LayeredNavigation\Block\Navigation\Search">
+	    <plugin name="mageinn_hint_view_template" type="Mageinn\Hint\Block\Templates\Layer\View" sortOrder="9998" />
+	</type>
+	<type name="Magento\LayeredNavigation\Block\Navigation\Category">
+	    <plugin name="mageinn_hint_view_template" type="Mageinn\Hint\Block\Templates\Layer\View" sortOrder="9997" />
+	</type>
+	<type name="Magento\LayeredNavigation\Block\Navigation\FilterRenderer">
+	    <plugin name="mageinn_hint_filter_template" type="Mageinn\Hint\Block\Templates\Layer\Filter" sortOrder="9996" />
+	</type>
+	<type name="Magento\Catalog\Block\Product\Compare\ListCompare">
+	    <plugin name="mageinn_hint_compare_list_template" type="Mageinn\Hint\Block\Templates\Product\CompareList" sortOrder="9994" />
+	</type>
+	<!-- Custom options override -->
+	<preference for="Magento\Catalog\Block\Product\View\Options\Type\Select" type="Mageinn\Hint\Block\Product\View\Options\Type\Select\Select" />
+	<!-- Custom options template -->
+	<type name="Magento\Catalog\Block\Product\View\Options\Type\DefaultType">
+	    <plugin name="product.info.options.default" type="Mageinn\Hint\Block\Product\View\Options\Type\DefaultType" sortOrder="10" />
+	</type>
+	<type name="Magento\Catalog\Block\Product\View\Options\Type\Text">
+	    <plugin name="product.info.options.text" type="Mageinn\Hint\Block\Product\View\Options\Type\Text" sortOrder="10" />
+	</type>
+	<type name="Magento\Catalog\Block\Product\View\Options\Type\File">
+	    <plugin name="product.info.options.file" type="Mageinn\Hint\Block\Product\View\Options\Type\File" sortOrder="10" />
+	</type>
+	<type name="Magento\Catalog\Block\Product\View\Options\Type\Select">
+	    <plugin name="product.info.options.select" type="Mageinn\Hint\Block\Product\View\Options\Type\Select" sortOrder="10" />
+	</type>
+	<type name="Magento\Catalog\Block\Product\View\Options\Type\Date">
+	    <plugin name="product.info.options.date" type="Mageinn\Hint\Block\Product\View\Options\Type\Date" sortOrder="10" />
+	</type>
+	<!-- Swatches template override -->
+	<type name="Magento\Swatches\Block\LayeredNavigation\RenderLayered">
+	    <plugin name="mageinn_hint_swatches_layered" type="Mageinn\Hint\Block\Swatches\Layered" sortOrder="10" />
+	</type>
+	<type name="Magento\Swatches\Block\Product\Renderer\Configurable">
+		<plugin name="mageinn_hint_swatches_configurable" type="Mageinn\Hint\Block\Swatches\Configurable" sortOrder="10" />
+	</type>
+	<type name="Magento\ConfigurableProduct\Model\ConfigurableAttributeData">
+		<plugin name="mageinn_hint_swatches_configurable_with_swatch" type="Mageinn\Hint\Block\Swatches\ConfigurableWithSwatch" sortOrder="10" />
+	</type>
+</config>

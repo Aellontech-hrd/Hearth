@@ -1,0 +1,109 @@
+<?php
+$helper = $this->helper('MGS\Blog\Helper\Data');
+$collection = $block->getPostCollection();
+?>
+
+<div class="content-block blog-block blog-grid-block">
+	<?php if($this->hasData('mgs_panel_title')): ?>
+		<div class="content-heading">
+			<h2 class="title"><?php echo $helper->decodeHtmlTag($this->getData('mgs_panel_title')) ?></h2>
+		</div>
+	<?php endif ?>
+
+	<?php if (count($collection)): ?>
+
+		<?php if($this->hasData('mgs_panel_note')): ?>
+			<div class="block-note"><?php echo $helper->decodeHtmlTag($this->getData('mgs_panel_note')) ?></div>
+		<?php endif ?>
+		
+		<?php
+			$blockId = rand() . time();
+			$showShortContent = $this->getConfig('show_short_content');
+			$viewAs = $this->getConfig('view_as');
+			$showThumbnail = $this->getConfig('show_thumbnail');
+		?>
+		
+		<?php if ($viewAs == 'owl_carousel'): ?>
+			<div class="block widget mgs-blog-lastest-posts">
+				<div class="block-content">
+					<div class="owl-carousel mgs-carousel-<?php echo $blockId; ?>">
+						<?php foreach ($collection as $post): ?>
+							<div class="item">
+								<?php if ($showThumbnail): ?>
+									<div class="image"><a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>"><img src="<?php echo $post->getThumbnailUrl(); ?>" alt="<?php echo $post->getTitle(); ?>"/></a></div>
+								<?php endif ?>
+								<div class="title"><a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle() ?></a></div>
+								<?php if ($showShortContent): ?>
+									<div class="short-content">
+										<?php echo substr($post->getShortContent(), 0, $this->getConfig('limit_characters_short_content')); ?>
+									</div>
+								<?php endif ?>
+							</div>
+						<?php endforeach ?>
+					</div>
+				</div>
+			</div>
+			
+			<script type="text/javascript">
+				require([
+					'jquery',
+					'mgs/owlcarousel'
+				], function ($) {
+					var owl<?php echo $blockId ?> = $('.mgs-carousel-<?php echo $blockId ?>').owlCarousel({
+						items: <?php echo $this->getConfig('items', 5); ?>,
+						autoplay: <?php echo $this->getConfig('autoplay') ? 'true' : 'false' ?>,
+						autoplayHoverPause: <?php echo $this->getConfig('stop_auto') ? 'true' : 'false' ?>,
+						nav: <?php echo $this->getConfig('navigation') ? 'true' : 'false' ?>,
+						dots: <?php echo $this->getConfig('pagination') ? 'true' : 'false' ?>,
+						margin:30,
+						responsive:{
+								0:{
+									items:1,
+									margin:0
+								},
+								480:{
+									items:2,
+									margin:20
+								},
+								768:{
+									items:<?php echo $this->getConfig('items', 5); ?>
+								}
+							}
+					});
+					<?php if($this->getConfig('pagination')): ?>
+						owl<?php echo $blockId ?>.on('changed.owl.carousel', function (event) {
+							if (event.item.count - event.page.size == event.item.index)
+								$(event.target).find('.owl-dots div:last')
+								  .addClass('active').siblings().removeClass('active');
+						});
+					<?php endif ?>
+				});
+			</script>
+		<?php else: ?>
+			<div class="block widget mgs-blog-lastest-posts">
+				<div class="block-content">
+					<?php $perRow = $this->getConfig('items', 5); ?>
+					<?php $col = $helper->convertPerRowtoCol($perRow); ?>
+					<ul class="row <?php echo $helper->convertColClass($col, 'row') ?>">
+						<?php foreach ($collection as $post): ?>
+							<li class="item <?php echo $helper->convertColClass($col, 'col') ?>">
+								<?php if ($showThumbnail): ?>
+									<div class="image"><a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>"><img src="<?php echo $post->getThumbnailUrl(); ?>" alt="<?php echo $post->getTitle(); ?>"/></a></div>
+								<?php endif ?>
+								<div class="title"><a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle() ?></a></div>
+								<?php if ($showShortContent): ?>
+									<div class="short-content">
+										<?php echo substr($post->getShortContent(), 0, $this->getConfig('limit_characters_short_content')); ?>
+									</div>
+								<?php endif ?>
+							</li>
+						<?php endforeach ?>
+					</ul>
+				</div>
+			</div>
+		<?php endif; ?>
+		
+	<?php else: ?>
+		<div role="alert" class="alert alert-warning"> <?php echo __('There are no posts matching the selection.') ?> </div>
+	<?php endif; ?>
+</div>

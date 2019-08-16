@@ -1,0 +1,75 @@
+<install>
+	<static_block>
+		<item>
+			<title>Default Footer About Us</title>
+			<identifier>footer_about_us</identifier>
+			<content><![CDATA[<p style="margin-bottom: 20px;"><img class="img-responsive logo-footer" src="{{media url="wysiwyg/magento-logo.png"}}" alt="" /></p>
+<p>Nulla facilisi. Aliquam dictum in as tempor libero, ac iaculis arcu accumsan at eros vel nibh.</p>
+<p>Integer ultricies a mattis. Etiam venenatis lorem in purus susci pit, id blandit dignissim. Sem at purus ultrices vehicula.</p>]]></content>
+		</item>
+		<item>
+			<title>Default Footer Link Customer Services</title>
+			<identifier>footer_links_block</identifier>
+			<content><![CDATA[<h4 class="title">Customer Services</h4>
+<ul class="links">
+<li><a href="#">Help &amp; Contact</a></li>
+<li><a href="#">Shipping &amp; Taxes</a></li>
+<li><a href="#">Return Policy</a></li>
+<li><a href="#">Careers</a></li>
+<li><a href="#">Affiliates</a></li>
+<li><a href="#">Legal Notice</a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Default Footer Link My Account</title>
+			<identifier>footer_links_block2</identifier>
+			<content><![CDATA[<h4 class="title">My Account</h4>
+<ul class="links">
+<li><a href="#">My Account</a></li>
+<li><a href="#">Personal Information</a></li>
+<li><a href="#">Addresses</a></li>
+<li><a href="#">Discount</a></li>
+<li><a href="#">Order History</a></li>
+<li><a href="#">Your Vouchers</a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Default Footer Link Information</title>
+			<identifier>footer_links_block3</identifier>
+			<content><![CDATA[<h4 class="title">Information</h4>
+<ul class="links">
+<li><a href="#">About Us</a></li>
+<li><a href="#">Our History</a></li>
+<li><a href="#">Our Stories</a></li>
+<li><a href="#">Hot Line</a></li>
+<li><a href="#">Delivery Information</a></li>
+<li><a href="#">Terms &amp; Conditions</a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Default Footer Newsletter</title>
+			<identifier>footer_newsletter</identifier>
+			<content><![CDATA[<h4 class="title">Newsletter</h4>
+<p>Subscribe for the latest styles and sales, plus get 25% off your first order.</p>
+<div>{{block class="Magento\\Newsletter\\Block\\Subscribe" template="Magento_Newsletter::subscribe.phtml"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Default Custom Sidebar Block</title>
+			<identifier>mpanel_default_sidebar_block</identifier>
+			<content><![CDATA[<div class="block-title"><strong class="title">Custom Static Block</strong></div>
+<div class="block-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>]]></content>
+		</item>
+		<item>
+			<title>Mpanel Product Detail Static Block Top</title>
+			<identifier>mpanel_product_detail_top_block</identifier>
+			<content><![CDATA[<div class="h4">Custom Static Block Top</div>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>]]></content>
+		</item>
+		<item>
+			<title>Mpanel Product Detail Static Block Bottom</title>
+			<identifier>mpanel_product_detail_bottom_block</identifier>
+			<content><![CDATA[<div class="h4">Custom Static Block Bottom</div>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>]]></content>
+		</item>
+	</static_block>	
+</install>
